@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+    <div class="container">
+
+        {% if form.subject.errors %}
+            <ol>
+                {% for error in form.subject.errors %}
+                    <li><strong>{{ error|escape }}</strong></li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+
+
+        <form method="POST">
+            <div class="logo-container">
+                <img width="200px" height="200px" src="/{{ application.logo.url }}" alt="Logo"/>
+
+                <h1>Login to <b>{{ application.name }}</b></h1>
+            </div>
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <input type="submit" value="Login"/>
+        </form>
+
+    </div>
+
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 30%;
+        }
+
+        form {
+            width: 100%
+        }
+
+        .container-fluid {
+            height: 100vh;
+        }
+
+        .row {
+            height: 100vh;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+
+
+
+
+{% endblock %}
